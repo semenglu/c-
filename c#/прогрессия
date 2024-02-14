@@ -1,0 +1,41 @@
+class Progress
+{
+    private int a, d;
+    public int A { get { return a; } set { a = value; } }
+    public int D { get { return d; } set { d = value; } }
+    public Progress( int a, int d)
+    {
+        this.a = a;
+        this.d = d;
+    }
+
+    public double An( int n)
+    {
+        return A + D*(n - 1);
+    }
+    public double summ(int n)
+    {
+        return n * (2 * A + D * (n - 1)) / 2;
+    }
+
+    public string print(int n)
+    {
+        return "для " + n + "-ого элемента равно - " + An(n) + " и сумма равна " + summ(n);
+    }
+
+}
+
+class My
+{
+    static void Main(string[] args)
+    {
+        Console.Write("Введите начальное значение : ");
+        int a = Convert.ToInt32(Console.ReadLine());
+        Console.Write("Введите шаг арифметической прогрессии : ");
+        int d = Convert.ToInt32(Console.ReadLine());
+        Progress p = new Progress(a, d);
+        Console.Write("Введите номер элемента : ");
+        int n = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine(p.print(n));
+    }
+}
