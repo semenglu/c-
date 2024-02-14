@@ -1,0 +1,82 @@
+public class Point
+{
+    public int x; public int y;
+    public Point(int x, int y)
+    {
+        this.x = x; this.y = y;
+    }
+    public int X { get { return x; } set { x = value; } }
+    public int Y { get { return y; } set { y = value; } }
+    public void print()
+    {
+        Console.WriteLine("X= " + x);
+        Console.WriteLine("y= " + y);
+        Console.WriteLine();
+    }
+    public double dist(Point p1)
+    {
+
+        return Math.Sqrt(Math.Pow((x - p1.x), 2) + Math.Pow((y - p1.y), 2));
+    }
+}
+public class Triangle
+{
+    public Point p1, p2, p3;
+    public Triangle(Point p1, Point p2, Point p3)
+    {
+        this.p1 = p1; this.p2 = p2; this.p3 = p3;
+    }
+    public double AB()
+    {
+        return p1.dist(p2);
+    }
+    public double BC()
+    {
+        return p2.dist(p3);
+    }
+    public double AC()
+    {
+        return p1.dist(p3);
+    }
+    public double Perimetr()
+    {
+        return AB() + BC() + AC();
+    }
+    public double Square()
+    {
+        double p, a, b, c;
+        p = Perimetr() / 2;
+        a = AB();
+        b = BC();
+        c = AC();
+        return Math.Sqrt(p * (p - a) * (p - b) * (p - c));
+    }
+    public string print()
+    {
+        string s = "Треугольник со сторонами: " + AB() + " " + BC() + " " + AC() + ", c периметром " + Perimetr() + " и площадью " + Square();
+        return s;
+    }
+}
+
+class My
+{
+    static void Main(string[] args)
+    {
+        Console.WriteLine("Коорд 1-ой точки");
+        int x = Convert.ToInt32(Console.ReadLine());
+        int y = Convert.ToInt32(Console.ReadLine());
+        Point p1 = new Point(x, y);
+        Console.WriteLine("Коорд 2-ой точки");
+        x = Convert.ToInt32(Console.ReadLine());
+        y = Convert.ToInt32(Console.ReadLine());
+        Point p2 = new Point(x, y);
+        Console.WriteLine("Коорд 3-ей точки");
+        x = Convert.ToInt32(Console.ReadLine());
+        y = Convert.ToInt32(Console.ReadLine());
+        Point p3 = new Point(x, y);
+        Triangle triangle = new Triangle(p1, p2, p3);
+        Console.WriteLine(triangle.print());
+        //Console.WriteLine("Расстояние: ");
+        //Console.WriteLine(p2.dist(p1));
+    }
+}
